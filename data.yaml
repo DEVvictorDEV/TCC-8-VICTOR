@@ -1,7 +1,0 @@
-path: "E:/Projetos/TCC_prototipo/datasets/modelo_abc_6"
-
-train: E:/Projetos/TCC_prototipo/datasets/modelo_abc_6/images/train
-val: E:/Projetos/TCC_prototipo/datasets/modelo_abc_6/images/val
-
-nc: 7
-names: ['F','E','D','C','B','A','regua']
