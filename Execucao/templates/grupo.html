@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Alagamento</title>
+    <meta name="description" content="Front End para nosso sistema de Monitoramento de Alagamentos/Enchentes">
+    <meta name="author" content="Paulo Cruz">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1 style="text-align: center;">Sistema de Monitoramento de Alagamentos/Enchentes</h1>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Monitoramento</a>
+                </li>
+                <li>
+                    <a href="projeto.html">Sobre Projeto</a>
+                </li>
+                <li>
+                    <a href="grupo.html">Sobre Grupo</a>
+                </li>
+            </ul>
+        </nav>
+
+        <style>
+            /* container geral */
+            .team-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* layout responsivo */
+                gap: 30px;
+                justify-items: center;
+                padding: 40px;
+                max-width: 1000px;
+                margin: auto;
+            }
+
+            /* bloco de cada perfil */
+            .profile {
+                background-color: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                padding: 20px;
+                width: 150px;
+                transition: transform 0.3s ease;
+            }
+
+            .profile:hover {
+                transform: scale(1.05);
+            }
+
+            /* foto circular */
+            .profile img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-bottom: 15px;
+            }
+
+            .profile h3 {
+                margin: 10px 0 5px;
+                color: #457b9d;
+            }
+
+            .profile p {
+                font-size: 14px;
+                color: #333;
+            }
+        </style>
+    </div>
+
+    <div class="team-container">
+
+        <div class="profile">
+            <img src="../static/img/Paulo.jpg" alt="Perfil 1">
+            <h3>Paulo Cesar da Cruz</h3>
+            <p>RA: G43112-0</p>
+        </div>
+
+        <div class="profile">
+            <img src="../static/img/Gustavo.jpg" alt="Perfil 2">
+            <h3>Gustavo Lima Ribeiro da Silva</h3>
+            <p>RA: N7669D-7</p>
+        </div>
+
+        <div class="profile">
+            <img src="../static/img/Richard.jpg" alt="Perfil 3">
+            <h3>Richard Lucas dos Santos Lima</h3>
+            <p>RA: F34ICH-4</p>
+        </div>
+
+        <div class="profile">
+            <img src="../static/img/Joao.jpg" alt="Perfil 4">
+            <h3>João Pedro do Carmo Godinho</h3>
+            <p>RA: N88363-4</p>
+        </div>
+
+        <div class="profile">
+            <img src="../static/img/Victor.jpg" alt="Perfil 5">
+            <h3>Victor Ribeiro Okamura</h3>
+            <p>RA: N8832E-0</p>
+        </div>
+    </div>
+</body>
+</html>
