@@ -8,92 +8,11 @@
     <meta name="author" content="Paulo Cruz">
 
     <!-- CSS externo -->
-    <link rel="stylesheet" href="index.css">
-
+    <link rel="stylesheet" href="{{ url_for ('static', filename ='style.css' )}}">
     <!-- Socket.IO -->
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 
-    <style>
-        /* Estilo direto para facilitar os testes */
-        body {
-            color: white;
-            background-color: black;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-        }
 
-        .container {
-            margin: 20px auto;
-            width: 80%;
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: space-between;
-            list-style: none;
-            align-items: center;
-            padding: 16px;
-        }            
-        nav li {
-            display: inline-block;
-            margin: 0 15px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #0077cc;
-            font-weight: bold;
-        }
-
-        .imagem-header {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        /* 🔹 Pop-up estilizado */
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.95);
-            border: 3px solid red;
-            color: #b30000;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 50px;
-            border-radius: 10px;
-            display: none; /* escondido por padrão */
-            z-index: 1000;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .popup.show {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: darkred;
-        }
-    </style>
 </head>
 <body>
     <h1>Sistema de Monitoramento de Alagamentos/Enchentes</h1>
@@ -102,13 +21,13 @@
         <nav>
             <ul>
                 <li>
-                    <a href="index.html">Monitoramento</a>
+                    <a href="/projeto">Sobre Projeto</a>
                 </li>
                 <li>
-                    <a href="projeto.html">Sobre Projeto</a>
+                    <a href="/index">Monitoramento</a>
                 </li>
                 <li>
-                    <a href="grupo.html">Sobre Grupo</a>
+                    <a href="/grupo">Sobre Grupo</a>
                 </li>
             </ul>
         </nav>
@@ -146,8 +65,13 @@
         // 🔹 Conecta ao backend Flask-SocketIO
         const socket = io();
 
+        socket.on("connect", () => {
+            console.log("✅ Conectado ao servidor Socket.IO");
+        });
+
         // 🔹 Recebe mensagens do servidor
-        socket.on('alerta', (data) => {
+        socket.on("alerta", (data) => {
+            console.log("🚨 Alerta recebido:", data.mensagem);
             mostrarPopup(data.mensagem);
         });
     </script>

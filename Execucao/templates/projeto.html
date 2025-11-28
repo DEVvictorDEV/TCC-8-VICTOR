@@ -6,7 +6,8 @@
     <title>Monitoramento de Alagamento</title>
     <meta name="description" content="Front End para nosso sistema de Monitoramento de Alagamentos/Enchentes">
     <meta name="author" content="Paulo Cruz">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{{ url_for ('static', filename ='style.css' )}}">
+    
 </head>
 <body>
     <h1 style="text-align: center;">Sistema de Monitoramento de Alagamentos/Enchentes</h1>
@@ -14,13 +15,13 @@
         <nav>
             <ul>
                 <li>
-                    <a href="index.html">Monitoramento</a>
+                    <a href="/projeto">Sobre Projeto</a>
                 </li>
                 <li>
-                    <a href="projeto.html">Sobre Projeto</a>
+                    <a href="/index">Monitoramento</a>
                 </li>
                 <li>
-                    <a href="grupo.html">Sobre Grupo</a>
+                    <a href="/grupo">Sobre Grupo</a>
                 </li>
             </ul>
         </nav>
@@ -35,21 +36,19 @@
 
         <main>
             <section>
-                <h3>Resumo</h3>
+                <h3>Resumo Executivo</h3>
                 <p>
-                    Enchentes e alagamentos causam prejuízos da ordem de bilhões de reais todos os anos, além de resultarem em perdas humanas inestimáveis. Segundo a Aon plc (2024), 
-                    no Global Catastrophe Recap Report, os desastres naturais registrados no Brasil entre janeiro e setembro de 2024 geraram perdas estimadas em aproximadamente 
-                    US$ 6,4 bilhões (cerca de R$ 37 bilhões). As enchentes ocorridas no estado do Rio Grande do Sul, entre os dias 28/04 e 3/5/2024, configuraram-se como o evento de 
-                    maior impacto econômico no período, com prejuízos estimados em US$ 5 bilhões.
+                    Este Trabalho de Conclusão de Curso apresenta o desenvolvimento de um sistema inteligente para reconhecimento de enchentes, 
+                    inundações e alagamentos por meio de câmeras e réguas marcadoras, visando integrar-se a iniciativas de cidades inteligentes 
+                    em São Paulo. Esta necessidade de monitoramento vem diante do aumento de eventos climáticos extremos no Brasil. Nossa solução 
+                    propõe monitoramento visual com câmera em tempo real, uso de inteligência artificial e utilizando recursos de linguagem Python, 
+                    bibliotecas OpenCV e YOLOv8. O sistema coleta imagens e identifica alterações que indiquem alagamentos através de processamento. 
+                    Os testes demonstraram eficiência na detecção e emissão imediata de alertas, mesmo em condições adversas de iluminação. 
+                    Conclui-se que o sistema é tecnicamente viável, de fácil integração e potencialmente útil para apoiar a Defesa Civil na prevenção 
+                    e mitigação de desastres urbanos, contribuindo para uma gestão mais inteligente e resiliente.
                 </p>
-            </section>
-            <section>
-                <h3>Metodologia</h3>
-                <p>
-                    Nosso sistema de reconhecimento de enchentes e alagamentos foi desenvolvido em linguagem Python, utilizando bibliotecas como:
-                    <li>OpenCV: para capturar imagens da camera;<br></li>
-                    <li>Labelimg: para demarcação das marcações que determinam o os níveis de altura da água<br></li>
-                    <li>YoloV8: referente a reconhecimento e treinamento de imagem.</li>
+	            <p>
+                Palavras-chave: OpenCV; YOLOv8; Python; Câmera
                 </p>
             </section>
         </main>
