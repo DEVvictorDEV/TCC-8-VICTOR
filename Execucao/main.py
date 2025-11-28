@@ -1,28 +1,26 @@
 import time
 import alerta
 
+contador2 = 0
 
-contador2 =0
-#while True: # a iaeia aqui é tirar 5 fotos diferentes em tempos diferentes e se todas estiverem submersas emite o alerta
+def main():
+    global contador2
 
-def main():  
-    while True:  
-        global contador2
-        s =alerta.sinal_alerta()
-        print("s", s)
-        if s == True:
-            contador2 = contador2 +1
-            print("contador2",contador2)
-                            
-        if contador2 == 2:
-            contador2=0
+    s = alerta.sinal_alerta()
+
+    if s:
+        contador2 += 1
+        print("contador_2: ", contador2)
+
+        if contador2 >= 2:  # dispara alerta após 2 detecções seguidas
+            contador2 = 0
             print("enviar sinal")
             return True
+        else:
+            return False
 
-        if s ==False:
-            contador2 = 0
-            main()
+    else:
+        contador2 = 0
+        return False
 
-        time.sleep(2)
-
-
+    time.sleep(2)

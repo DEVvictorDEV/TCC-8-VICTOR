@@ -18,12 +18,12 @@ def camera_f():
         print("Erro ao abrir a webcam.")
         exit()
 
-    print("Pressione a tecla ESPAÇO para salvar o frame. Pressione ESC para sair.")
+    #print("Pressione a tecla ESPAÇO para salvar o frame. Pressione ESC para sair.")
     
     while quebra == True:
         ret, frame = cap.read()
         if not ret:
-            print("Erro ao capturar frame.")
+            print("Frame nao capturado.")
             break
         
             
@@ -41,7 +41,7 @@ def camera_f():
 
         #tirar a foto automaticamente
         time.sleep(5)
-        cv2.imwrite("C:/Users/victo/Documents/GitHub/TCC_prototipo/Execucao/imagen/frame_salvo.png", frame)
+        cv2.imwrite("E:/Projetos/TCC_prototipo/Execucao/imagen/frame_salvo.png", frame)
         print("Frame salvo como frame_salvo.png")
         img_pronta = True
         quebra =False

@@ -1,97 +1,51 @@
 import threading
 import time
-import alerta
-import camera
 import main
-import check
-import monitoramento
+import camera
 from flask import Flask, render_template
 from flask_socketio import SocketIO
-
-
-
-# Falta ajustar para ciclos de camera ! ! !
-
-#camera.camera_f()
-
-
-#camera.camera_f()
-"""while camera.quebra == True:
-    print(camera.quebra)
-    #if check.cond == True:
-    camera.camera_f()
-    print ("teste 1")
-    if camera.img_pronta == True:
-            print("teste2")
-            #using_model_boxes.analise_caixa()
-            #print (using_model_boxes.analise_caixa())
-            #print (marcas.leitura_marcas())
-            #monitoramento.monitoramento()
-            #print (check.repeat())
-            ""def  repeat():
-                global sinal
-                sinal = False
-
-                contador = 0
-            
-                for i in range(5): # vai fazer 10 checagens se o d_sub esta submerso para não apresentar falsos positivos
-                a_sub, b_sub, c_sub, d_sub, e_sub, f_sub = monitoramento.monitoramento()
-                #print("mon",monitoramento())
-                if c_sub == True:
-                    contador += 1
-                    print("contador:",contador)
-                    time.sleep(1)
-                if contador == 5:
-                print("alagemento na regiao")
-                sinal = True
-                print(sinal)
-                else:
-                c_sub = False
-            
-                return a_sub, b_sub, c_sub, d_sub, e_sub, f_sub
-"""
-# -----------------------
-# Flask + SocketIO
-# -----------------------
-app = Flask(__name__)
+ 
+#def index():
+#    return render_template('index.html')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
-
+socketio = SocketIO(app, cors_allowed_origins="*")
+ 
 @app.route('/')
+@app.route('/index')
 def index():
     return render_template('index.html')
-
+ 
+@app.route('/projeto')
+def projeto():
+    return render_template('projeto.html')
+ 
+@app.route('/grupo')
+def grupo():
+    return render_template('grupo.html')
+ 
 @app.route('/disparar_alerta')
-def disparar_alerta():
-
-    # pegar só o setimo valor do return
-    sinal = main.main()
-    print("vamo ver", sinal)
-    if sinal == True:
-        print("Emitindo alerta manual")
-        #with app.app_context():
-        #socketio.emit('alerta', {'mensagem': '🚨 Alerta de alagamento ou enchente na região!'})
-    return socketio.emit('alerta', {'mensagem': '🚨 Alerta de alagamento ou enchente na região!'})
-
-# -----------------------
-# Thread para alerta automático
-# -----------------------
-"""def monitorar_alerta():
+def disparar_alerta_route():
+    emitir_alerta("MANUAL")
+    return "Alerta disparado!"
+ 
+def emitir_alerta(tipo="AUTOMÁTICO"):
+    try:
+        sinal = bool(main.main())
+    except Exception as e:
+        print("⚠️ Excecao em main.main():", e)
+        sinal = False
+ 
+    if sinal:
+        print(f"Emitindo alerta {tipo}")
+        socketio.emit('alerta',{'mensagem': f'🚨 Alerta {tipo}: Alagamento ou enchente detectada!'})
+ 
+def monitorar():
     while True:
+        emitir_alerta("AUTOMÁTICO")
         time.sleep(10)
-        if repet():
-            print("Emitindo alerta automático!")
-            with app.app_context():
-                socketio.emit('alerta', {'mensagem': '🚨 Alerta automático: enchente detectada!'})
-        else:
-            print("Nenhum alagamento detectado.")
-"""
-# -----------------------
-# Execução principal
-# -----------------------
+ 
 if __name__ == '__main__':
-    # Inicia câmera em paralelo
-   # threading.Thread(target=camera.camera_f, daemon=True).start()
-    # Inicia o monitoramento automático em paralelo
-    threading.Thread(target=disparar_alerta, daemon=True).start()
+    socketio.start_background_task(monitorar)
+    threading.Thread(target=camera.camera_f, daemon=True).start()
     socketio.run(app, host="127.0.0.1", port=5000, debug=True)
